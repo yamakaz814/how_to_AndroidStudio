@@ -1,0 +1,19 @@
+//ボタンクリック時の処理
+public void btn_onclick(View view){
+    WebView wv = findViewById(R.id.wv);
+    
+    //クリックされたボタンに応じて決められたページへ飛ぶ
+    switch (view.getId()){
+        case R.id.btn_amazon:
+            wv.loadUrl("https://amazon.co.jp");
+            break;
+
+        case R.id.btn_rakuten:
+            wv.loadUrl("https://rakuten.co.jp/");
+            break;
+
+        case R.id.btn_qiita:
+            wv.loadUrl("https://qiita.com/");
+            break;
+        default:
+            break;

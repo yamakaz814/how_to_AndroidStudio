@@ -1,0 +1,12 @@
+//レーティングバー
+RatingBar rate = findViewById(R.id.rating);
+rate.setOnRatingBarChangeListener(
+        new RatingBar.OnRatingBarChangeListener() {
+            @Override
+            public void onRatingChanged(RatingBar ratingBar, float rating, boolean fromUser) {
+                Toast.makeText(MainActivity.this,
+                        String.format(Locale.JAPAN,"現在の評価は%fです",rating),
+                Toast.LENGTH_SHORT).show();
+            }
+        }
+);
