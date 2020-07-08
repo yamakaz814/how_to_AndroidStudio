@@ -1,0 +1,56 @@
+//multiplechoice
+list.setMultiChoiceModeListener(new AbsListView.MultiChoiceModeListener() {
+    //選択項目のチェック状態が変化した時
+    @Override
+    public void onItemCheckedStateChanged(ActionMode mode, int position, long id, boolean checked) {
+
+    }
+    //アクションモードを起動する時
+    @Override
+    public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+        return true;
+    }
+    //アクションモードの準備時
+    @Override
+    public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+        return true;
+    }
+    //項目をクリックした時
+    @Override
+    public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+        return true;
+    }
+    //アクションモードを終了した時
+    @Override
+    public void onDestroyActionMode(ActionMode mode) {
+        StringBuilder msg = new StringBuilder("選択したのは");
+        int count =0;
+        //チェック状態のものだけ追加
+        for (int i=0; i < list.getChildCount();i++){
+            CheckedTextView check = (CheckedTextView)list.getChildAt(i);
+            if(check.isChecked()){
+                msg.append(check.getText()).append(",");
+                count++;
+            }
+        }
+        msg.append(count).append("種類");
+        Toast.makeText(MainActivity.this,msg.substring(0,msg.length()),
+                Toast.LENGTH_SHORT).show();
+
+    }
+});
+
+// リスト末尾までスクロールしたら次の項目を追加
+list.setOnScrollListener(
+        new AbsListView.OnScrollListener() {
+            @Override
+            public void onScroll(AbsListView av, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
+                if (firstVisibleItem + visibleItemCount + 3 > totalItemCount){
+                    adapter.add("新種ネコ");
+                    adapter.add("雑種ネコ");
+                    adapter.add("野良ネコ");
+                }
+            }
+            public void  onScrollStateChanged(AbsListView arg0,int arg1){}
+        }
+);

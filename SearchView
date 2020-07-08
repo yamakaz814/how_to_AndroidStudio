@@ -1,0 +1,38 @@
+//リスト項目をArrayListとして準備
+  ArrayList<String> data = new ArrayList<>();
+  data.add("キジトラ");
+  data.add("サバトラ");
+  data.add("シャムトラ ");
+  data.add("ハチワレ");
+  data.add("クロネコ");
+  data.add("ミケネコ");
+
+  //配列アダプターを作成&LIstViewに登録
+  ArrayAdapter<String> adapter = new ArrayAdapter<>(
+          this,android.R.layout.simple_list_item_1,data);
+  final ListView list = findViewById(R.id.list);
+  list.setAdapter(adapter);
+
+  //フィルター機能を有効化
+  list.setTextFilterEnabled(true);
+
+  //検索ボックスに入力された時の処理を定義
+  SearchView sv = findViewById(R.id.search);
+  sv.setOnQueryTextListener(
+          new SearchView.OnQueryTextListener() {
+              @Override
+              public boolean onQueryTextSubmit(String arg0) {
+                  return false;
+              }
+
+              @Override
+              public boolean onQueryTextChange(String text) {
+                  if (text == null || text.equals(" ")){
+                      list.clearTextFilter();
+                  }else{
+                      list.setFilterText(text);
+                  }
+                  return false;
+              }
+          }
+);

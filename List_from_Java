@@ -1,0 +1,15 @@
+ //リスト項目をArrayListとして準備
+        final ArrayList<String> data = new ArrayList<>();
+        data.add("キジトラ");
+        data.add("サバトラ");
+        data.add("シャムトラ ");
+        data.add("ハチワレ");
+        data.add("クロネコ");
+        data.add("ミケネコ");
+
+        //配列アダプターを作成　ListViewに登録
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1,data);
+        ListView list = findViewById(R.id.list);
+        list.setAdapter(adapter);
+    }
