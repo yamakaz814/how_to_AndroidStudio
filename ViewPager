@@ -1,0 +1,38 @@
+
+public class PageAdapter extends FragmentPagerAdapter {
+    //ページ数
+    private final int PAGE_COUNT = 3;
+
+    //ページのタイトル
+    private String[] titles = new String[]{"梅おにぎり","たらこおにぎり","高菜おにぎり"};
+
+    //コンストラクタ-
+    PageAdapter(FragmentManager fm){
+        super(fm);
+    }
+
+    //ページの個数を取得
+    @Override
+    public int getCount(){
+        return PAGE_COUNT;
+    }
+
+    //ページのタイトルを取得
+    @Override
+    public CharSequence getPageTitle(int position){
+        return this.titles[position];
+    }
+
+    //インデックス番号に応じてページを取得
+    @Override
+    public Fragment getItem(int i){
+        switch (i){
+            case 0:
+                return new Page1Fragment();
+            case 1:
+                return new Page2Fragment();
+            default:
+                return new Page3Fragment();
+        }
+    }
+}
