@@ -1,0 +1,40 @@
+---------------Adapterクラス---------------
+//ViewPager2でオーバーライドするべきメソッドは2つになった
+    @NonNull
+    @Override
+    public Fragment createFragment(int position) {
+        switch (position){
+            case 0:
+                return new Page1Fragment();
+            case 1:
+                return new Page2Fragment();
+            default:
+                return new Page3Fragment();
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return PAGE_COUNT;
+    }
+
+---------------MainActivity---------------
+public class MainActivity extends FragmentActivity {
+
+    private ViewPager2 viewPager;
+    private PageAdapter pagerAdapter;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        viewPager = findViewById(R.id.pager);
+        pagerAdapter = new PageAdapter(this);
+        viewPager.setAdapter(pagerAdapter);
+
+    }
+
+
+
+}
