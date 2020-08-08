@@ -9,6 +9,7 @@ import android.view.View;
 
 import androidx.annotation.Nullable;
 
+//Viewを継承して新しく描画するクラスを作る
 public class SimpleView extends View {
     public SimpleView(Context context) {
         super(context);
